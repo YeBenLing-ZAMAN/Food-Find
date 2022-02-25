@@ -1,6 +1,6 @@
 
 
-const search = () => {
+const search = async () => {
     const searchInputField = document.getElementById('search-input-field').value;
 
     const url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputField}`;
@@ -8,9 +8,13 @@ const search = () => {
 
     }else{
 
-        fetch(url)
-        .then(res => res.json())
-        .then(data => showResult(data.meals))
+        // fetch(url)
+        // .then(res => res.json())
+        // .then(data => showResult(data.meals))
+
+        const res = await fetch (url);
+        const data = await res.json();
+        showResult(data.meals)
     }
 }
 
